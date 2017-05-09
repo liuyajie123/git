@@ -1,0 +1,46 @@
+<!doctype html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <title>Document</title>
+ </head>
+ <body>
+     <script>
+            //第一种数组去重
+            //indexOf
+            function oneagain(){
+            var arr=[1,2,3,5,8,6,8,8,5,8,8,5,8,5,8],
+                brr=[];
+            var len=arr.length;
+            for(var i=0;i<len;i++){
+                 if(brr.indexOf(arr[i])<1){
+                    brr.push(arr[i])
+                 }
+            }
+            console.log(brr)
+}
+ oneagain()
+
+        //排序
+        //相邻的一样截取
+        function twoagain(){
+            var arr=[1,2,3,5,8,6,6,6,8,8,5,5,8,5,8,8],
+                brr=arr.sort(),
+                len=brr.length;
+                for(var i=0;i<len;i++){
+                    for(var j=i+1;j<len;j++){
+                        if(brr[i]==brr[j]){
+                            brr.splice(i+1,j)
+                         }
+                    }
+                }
+                console.log(brr)        
+            }
+        twoagain()
+
+ 
+
+
+     </script>
+ </body>
+ </html> 
