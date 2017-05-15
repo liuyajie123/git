@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+</head>
+<style>
+    .btn{
+        width:  150px;
+        height: 30px;
+    }
+    input{
+        width: 100px;
+        height: 25px;;
+    }
+    .ul-wai{
+        width: 500px;
+    }
+    .ul-wai li{
+            list-style: none;
+            height: 29px;
+            line-height: 29px;
+            border-bottom: 1px solid #ccc;
+
+    }
+    .ul-wai li span{
+        float: left;
+        padding-left: 25px;
+        display: block;
+        width: 140px;
+        text-align: center;
+    }
+    .top{
+        padding-left: 40px;
+    }
+</style>
+<body ng-app="myapp">
+<div ng-controller="ft">
+
+    <div class="top">
+        <input type="text" ng-model="search"><button class="btn">search</button>
+    </div>
+
+    <ul class="ul-wai">
+        <li>
+            <span>编号<b ng-class="{caret:true}" ng-click="change('id')"></b></span>
+            <span>型号<b ng-class="{caret:true}" ng-click="change('xingh')"></b></span>
+            <span>价格<b ng-class="{caret:true}" ng-click="change('price')"></b> </span>
+        </li>
+        <li  ng-repeat="item in arr | filter: search |  orderBy: order+type ">
+               <span>{{item.id}}</span>
+               <span>{{item.xingh}}</span>
+               <span>{{item.price}}</span>
+        </li>
+    </ul>
+</div>
+
+    <script src="js/angular.js"></script>
+    <script>
+        var app=angular.module("myapp",[])
+        app.controller("ft",function($scope,data){
+            $scope.arr=data.phone
+            $scope.order=""
+            $scope.change=function(name){
+                $scope.type=name
+                if( $scope.order==""){
+                    $scope.order="-"
+                }
+                else{
+                    $scope.order=""
+                }
+            }
+
+        })
+
+        app.config( function($provide) {
+            $provide.provider("data", function () {
+                this.$get = function () {
+                    return {
+                        phone: [
+                            {
+                                id: 333330,
+                                xingh: 'iphone3',
+                                price: "13333"
+                            },
+                            {
+                                id: 355555,
+                                xingh: 'iphone5',
+                                price: "15555"
+                            },
+                            {
+                                id: 366666,
+                                xingh: 'iphone6',
+                                price: "16666"
+                            },
+                            {
+                                id: 377777,
+                                xingh: 'iphone7',
+                                price: "17777"
+                            }
+                        ]
+                    }
+                }
+            })
+        })
+
+
+    </script>
+</body>
+</html>
